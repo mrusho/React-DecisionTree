@@ -1,0 +1,77 @@
+{
+  "decisionMap": {
+    "lung": {
+      "id": "lung",
+      "name": ["Lung Cancer"],
+      "parentId": "decisionMap",
+      "childIds": [
+        "lung-q1"
+      ]
+    },
+    "lung-q1": {
+      "id": "lung-q1",
+      "name": ["Were you born before 1971?", "What's your favorite color?"],
+      "parentId": "lung",
+      "fieldType": ["boolean", "choice"],
+      "options": [[
+        "Yes",
+        "No"
+      ],[
+        "Red",
+        "Blue",
+        "Green"
+      ]],
+      "childIds" : [
+        "lung-a1",
+        "lung-q2"
+      ]
+    },
+    "lung-q2": {
+      "id": "lung-q2",
+      "name": ["How are you feeling right now?"],
+      "fieldType": ["boolean"],
+      "options": [[
+        "Happy",
+        "Sad"
+      ]],
+      "preReqs": [
+        "No",
+        "Red",
+        "Green"
+      ],
+      "parentId": "lung-q1",
+      "childIds" : [
+        "lung-a2",
+        "lung-a3"
+      ]
+    },
+    "lung-a1": {
+      "id": "lung-a1",
+      "name": ["Lung Answer 1"],
+      "preReqs": [
+        "Yes",
+        "Blue"
+      ],
+      "parentId": "lung-q1",
+      "isAnswer": true
+    },
+    "lung-a2": {
+      "id": "lung-a2",
+      "name": ["Lung Answer 2"],
+      "preReqs": [
+        "Sad"
+      ],
+      "parentId": "lung-q2",
+      "isAnswer": true
+    },
+    "lung-a3": {
+      "id": "lung-a3",
+      "name": ["Lung Answer 3"],
+      "preReqs": [
+        "Happy"
+      ],
+      "parentId": "lung-q2",
+      "isAnswer": true
+    }
+  }
+}
